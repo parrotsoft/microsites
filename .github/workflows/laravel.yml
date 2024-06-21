@@ -1,0 +1,40 @@
+name: LaravelEscuela
+
+on:
+  push:
+    branches: [feature/cicd]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version: ['8.2']
+
+    steps:
+      - name: Setup PHP
+      - uses: shivammathur/setup-php@v2
+      - with:
+          php-version: 8.2
+          extensions: json, dom, curl, libxml, mbstring
+          coverega: none
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: run composer install
+        run: composer install -n --prefer-dist
+
+      - name: rum npm install
+        run: npm install
+
+      - name: Run test
+        run: php artisan test
+
+      - name: Run script
+        run: |
+          echo "Hola mundo"
+          ls
+          echo "Fin"
+
