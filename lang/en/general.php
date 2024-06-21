@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 return [
@@ -10,5 +11,5 @@ return [
     'enabled' => 'Enabled',
     'disabled' => 'Disabled',
     'status' => 'Status',
-    'select_option' => 'Select an option'
+    'select_option' => 'Select an option',
 ];

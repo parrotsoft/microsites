@@ -26,6 +26,7 @@ class CategoryController extends Controller
     public function create(): View
     {
         $this->authorize(PolicyName::CREATE, Category::class);
+
         return view('categories.create');
     }
 
@@ -33,19 +34,21 @@ class CategoryController extends Controller
     {
         $this->authorize(PolicyName::CREATE, Category::class);
         Category::query()->create($request->all());
+
         return redirect()->route('categories.index');
     }
 
     public function show(Category $category): View
     {
         $this->authorize(PolicyName::VIEW, Category::class);
+
         return view('categories.show', compact('category'));
     }
-
 
     public function edit(Category $category): View
     {
         $this->authorize(PolicyName::UPDATE, Category::class);
+
         return view('categories.create', compact('category'));
     }
 
@@ -53,16 +56,17 @@ class CategoryController extends Controller
     {
         $this->authorize(PolicyName::UPDATE, Category::class);
         $category->update([
-            'name' => $request->get('name')
+            'name' => $request->get('name'),
         ]);
+
         return redirect()->route('categories.index');
     }
-
 
     public function destroy(Category $category): RedirectResponse
     {
         $this->authorize(PolicyName::DELETE, Category::class);
         $category->delete();
+
         return redirect()->route('categories.index');
     }
 }

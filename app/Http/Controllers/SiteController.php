@@ -29,12 +29,14 @@ class SiteController extends Controller
     {
         $categories = Category::query()->select(['id', 'name'])->get();
         $documentTypes = DocumentTypes::cases();
+
         return view('sites.create', compact('categories', 'documentTypes'));
     }
 
     public function store(StoreSiteRequest $request, StoreAction $storeAction): RedirectResponse
     {
         $storeAction->execute($request->validated());
+
         return redirect()->route('sites.index');
     }
 
@@ -42,7 +44,8 @@ class SiteController extends Controller
     {
         $categories = Category::query()->select(['id', 'name'])->get();
         $documentTypes = DocumentTypes::cases();
-        return view('sites.create', compact('categories','site', 'documentTypes'));
+
+        return view('sites.create', compact('categories', 'site', 'documentTypes'));
     }
 
     public function update(Request $request, Site $site): RedirectResponse
@@ -54,6 +57,7 @@ class SiteController extends Controller
             'document_type' => $request->get('document_type'),
             'document' => $request->get('document'),
         ]);
+
         return redirect()->route('sites.index');
     }
 
@@ -65,6 +69,7 @@ class SiteController extends Controller
     public function destroy(Site $site, DeleteAction $deleteAction): RedirectResponse
     {
         $deleteAction->execute($site);
+
         return redirect()->route('sites.index');
     }
 }
