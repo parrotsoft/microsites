@@ -10,13 +10,13 @@ jobs:
 
     strategy:
       matrix:
-        php-version: ['8.2']
+        php-version: ['8.3']
 
     steps:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.2
+          php-version: 8.3
           extensions: json, dom, curl, libxml, mbstring
           coverage: none
 
