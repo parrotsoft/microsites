@@ -20,6 +20,11 @@ jobs:
           extensions: json, dom, curl, libxml, mbstring
           coverega: none
 
+      - name: Check PHP
+        run: php -v
+
+      - uses: actions/checkout@v2
+
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
