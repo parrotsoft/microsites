@@ -35,7 +35,7 @@ jobs:
         run: touch database/database.sqlite
 
       - name: Test
-        run: php artsan test
+        run: php artisan test
 
       - name: Run Laravel pint
         run: ./vendor/bin/pint
